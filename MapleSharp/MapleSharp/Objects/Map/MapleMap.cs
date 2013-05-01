@@ -45,9 +45,8 @@ namespace MapleSharp.Objects.Map
             foreach (MapleLayer layer in Layers.Values)
             {
                 layer.Draw(spriteBatch);
-                foreach (MapleNpc npc in Npcs) // Sorry about all the shitty loops, I get lazy
-                    if (layer.LayerIndex == npc.Layer)
-                        npc.Draw(spriteBatch);
+                foreach (MapleNpc npc in Npcs.Where(o => o.Layer == layer.LayerIndex))
+                    npc.Draw(spriteBatch);
                 if (layer.LayerIndex == Constants.Globals.Player.Layer)
                     Constants.Globals.Player.Draw(spriteBatch); // TODO: Draw other characters if multiplayer
             }
